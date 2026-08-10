@@ -1,0 +1,31 @@
+[package]
+name = "engine"
+version = "0.1.0"
+edition = "2021"
+description = "Transport-agnostic game engine and eval core for the Secret Hitler LLM-agent eval harness – shared across CLI, HTTP API, and MCP"
+license = "MIT"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+schemars = "0.8"
+inventory = "0.3"
+tracing = "0.1"
+uuid = { version = "1", features = ["v4"] }
+reqwest = { version = "0.13", default-features = false, features = ["json", "rustls-no-provider", "http2", "charset", "system-proxy"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time", "net", "io-util"] }
+thiserror = "2"
+async-trait = "0.1"
+hostname = "0.4"
+rand = "0.8"
+rand_chacha = { version = "0.3", features = ["serde1"] }
+skillratings = "0.29"
+futures = "0.3"
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "tls-rustls", "postgres", "uuid", "chrono", "migrate", "macros", "json"] }
+chrono = { version = "0.4", features = ["serde"] }
+app-config = { path = "../config" }
+sha2 = "0.10"
+
+[dev-dependencies]
+tempfile = "3.27.0"

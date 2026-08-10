@@ -1,0 +1,481 @@
+/* ─── Secret Hitler brand ───────────────────────────────────────────────── */
+/* Canonical palette + fonts. See the `secret-hitler-brand` skill; edit tokens
+   there and re-sync this copy. Light "Parchment" / dark "Noir" flip lives in
+   brand.css (driven by prefers-color-scheme), so no dark block is needed here. */
+@import "./brand.css";
+
+/* ─── Design Tokens (mapped onto the brand) ─────────────────────────────── */
+
+:root {
+	--color-bg: var(--sh-bg);
+	--color-surface: var(--sh-surface);
+	--color-border: var(--sh-line);
+	--color-text-primary: var(--sh-ink);
+	--color-text-secondary: var(--sh-ink-soft);
+	--color-btn-bg: var(--sh-btn-bg);
+	--color-btn-hover: var(--sh-btn-hover);
+	--color-error: var(--sh-error);
+	--color-warn-bg: var(--sh-warn-bg);
+	--color-warn-text: var(--sh-warn-text);
+
+	--font-sans: var(--sh-font-body);
+	--font-mono: var(--sh-font-mono);
+	--font-display: var(--sh-font-display);
+	--font-size-base: 15px;
+	--font-size-sm: 13px;
+
+	font-family: var(--font-sans);
+	font-size: var(--font-size-base);
+	color-scheme: light dark;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+/* ─── Reset / Base ──────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	background: var(--color-bg);
+	color: var(--color-text-primary);
+}
+
+/* ─── App shell ─────────────────────────────────────────────────────────── */
+
+.sh-app {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 1.5rem 1rem 4rem;
+}
+
+.sh-header {
+	display: flex;
+	align-items: baseline;
+	gap: 1.5rem;
+	margin-bottom: 1rem;
+	flex-wrap: wrap;
+}
+
+.sh-header h1 {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 1.6rem;
+	text-transform: var(--sh-display-transform);
+	letter-spacing: var(--sh-display-tracking);
+	color: var(--sh-fascist);
+	line-height: 1;
+}
+
+.sh-tab {
+	background: none;
+	border: 1px solid var(--color-border);
+	border-radius: var(--sh-radius);
+	padding: 0.35rem 0.95rem;
+	margin-right: 0.5rem;
+	color: var(--color-text-secondary);
+	cursor: pointer;
+	font-family: var(--font-display);
+	font-size: var(--font-size-sm);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.sh-tab-active {
+	background: var(--color-btn-bg);
+	border-color: var(--color-btn-bg);
+	color: var(--sh-btn-fg);
+}
+
+.sh-panel {
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--sh-radius-lg);
+	padding: 1rem;
+	display: grid;
+	gap: 0.9rem;
+}
+
+.sh-panel h3 {
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 1.05rem;
+	text-transform: var(--sh-display-transform);
+	letter-spacing: var(--sh-display-tracking);
+	margin-top: 0.4rem;
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid var(--color-border);
+}
+
+.sh-controls {
+	display: flex;
+	gap: 1.25rem;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.sh-controls select {
+	font: inherit;
+	padding: 0.25rem 0.4rem;
+	background: var(--color-bg);
+	color: var(--color-text-primary);
+	border: 1px solid var(--color-border);
+	border-radius: 6px;
+	max-width: 30rem;
+}
+
+/* ─── Tables ────────────────────────────────────────────────────────────── */
+
+.sh-table-wrap {
+	overflow-x: auto;
+}
+
+.sh-table {
+	border-collapse: collapse;
+	width: 100%;
+	font-size: var(--font-size-sm);
+}
+
+.sh-table th,
+.sh-table td {
+	text-align: left;
+	padding: 0.45rem 0.6rem;
+	border-bottom: 1px solid var(--color-border);
+	white-space: nowrap;
+}
+
+.sh-table th {
+	color: var(--color-text-secondary);
+	font-family: var(--font-display);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.sh-mono {
+	font-family: var(--font-mono);
+}
+
+.sh-small {
+	font-size: var(--font-size-sm);
+}
+
+.sh-muted {
+	color: var(--color-text-secondary);
+}
+
+.sh-error {
+	color: var(--color-error);
+}
+
+.sh-tag {
+	display: inline-block;
+	margin-left: 0.4rem;
+	padding: 0 0.4rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--sh-radius);
+	font-family: var(--font-display);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--color-text-secondary);
+	vertical-align: middle;
+}
+
+.sh-warn {
+	background: var(--color-warn-bg);
+	color: var(--color-warn-text);
+	border-color: transparent;
+}
+
+/* ─── Replay ────────────────────────────────────────────────────────────── */
+
+.sh-board {
+	display: flex;
+	gap: 1.5rem;
+	align-items: baseline;
+	flex-wrap: wrap;
+	font-family: var(--font-display);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-size: 1.05rem;
+}
+
+.sh-board strong {
+	font-weight: 700;
+	font-size: 1.15em;
+}
+
+.sh-seats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+	gap: 0.5rem;
+}
+
+.sh-seat {
+	border: 1px solid var(--color-border);
+	border-left-width: 4px;
+	border-radius: 8px;
+	padding: 0.4rem 0.6rem;
+	font-size: var(--font-size-sm);
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Faction accents on the seat card edge (identity also in text, never
+   color-alone). Brand hues: liberal teal, fascist red-orange, Hitler ink. */
+.sh-role-liberal {
+	border-left-color: var(--sh-liberal);
+}
+
+.sh-role-fascist {
+	border-left-color: var(--sh-fascist);
+}
+
+/* --sh-hitler-edge themes itself (near-black on Parchment, oxblood on Noir),
+   so no per-theme override is needed here — it inherits brand.css's guards. */
+.sh-role-hitler {
+	border-left-color: var(--sh-hitler-edge);
+}
+
+.sh-dead {
+	opacity: 0.5;
+}
+
+.sh-slider {
+	display: grid;
+	gap: 0.25rem;
+	font-size: var(--font-size-sm);
+	color: var(--color-text-secondary);
+}
+
+/* Transcript header: round count + expand/collapse-all actions. */
+.sh-log-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 1rem;
+}
+
+.sh-log-actions {
+	display: flex;
+	gap: 0.75rem;
+}
+
+.sh-linkbtn {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	font-family: var(--font-display);
+	font-size: var(--font-size-sm);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--sh-liberal);
+}
+
+.sh-linkbtn:hover {
+	color: var(--sh-fascist);
+}
+
+.sh-log {
+	max-height: 360px;
+	overflow-y: auto;
+	border: 1px solid var(--color-border);
+	border-radius: var(--sh-radius);
+	padding: 0.4rem;
+	font-size: var(--font-size-sm);
+	display: grid;
+	gap: 0.4rem;
+}
+
+/* Each round is an independently foldable group. */
+.sh-round {
+	border: 1px solid var(--color-border);
+	border-radius: var(--sh-radius);
+	background: var(--color-surface);
+	overflow: hidden;
+}
+
+.sh-round > summary {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 0.75rem;
+	cursor: pointer;
+	padding: 0.35rem 0.6rem;
+	background: var(--sh-surface-sunken);
+	list-style: none;
+}
+
+.sh-round > summary::-webkit-details-marker {
+	display: none;
+}
+
+.sh-round > summary::before {
+	content: "▸";
+	color: var(--color-text-secondary);
+	margin-right: 0.1rem;
+	transition: transform 0.12s ease;
+}
+
+.sh-round[open] > summary::before {
+	content: "▾";
+}
+
+.sh-round-title {
+	flex: 1;
+	font-family: var(--font-display);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.sh-round-tag {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-sm);
+	white-space: nowrap;
+}
+
+.sh-round-body {
+	list-style: none;
+	display: grid;
+	gap: 0.15rem;
+	padding: 0.4rem 0.6rem 0.5rem 1.1rem;
+}
+
+.sh-private {
+	color: var(--color-text-secondary);
+	font-style: italic;
+}
+
+.sh-thought summary {
+	cursor: pointer;
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-sm);
+}
+
+/* Private reasoning reads as a classified dossier — typewriter face. */
+.sh-thought p {
+	margin: 0.2rem 0 0.4rem 1.1rem;
+	padding: 0.35rem 0.6rem;
+	border-left: 2px solid var(--sh-gold);
+	background: var(--sh-surface-sunken);
+	color: var(--color-text-primary);
+	font-family: var(--sh-font-typewriter);
+	font-size: var(--font-size-sm);
+	white-space: pre-wrap;
+}
+
+/* ─── Heatmap ───────────────────────────────────────────────────────────── */
+
+.sh-heatmap {
+	border-collapse: separate;
+	border-spacing: 2px; /* 2px surface gap between fills */
+	font-size: var(--font-size-sm);
+}
+
+.sh-heatmap th {
+	color: var(--color-text-secondary);
+	font-family: var(--font-display);
+	font-weight: 500;
+	letter-spacing: 0.03em;
+	padding: 0.3rem 0.45rem;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.sh-hm-cell {
+	min-width: 2.6rem;
+	height: 2rem;
+	text-align: center;
+	border-radius: 4px;
+	font-family: var(--font-mono);
+	cursor: default;
+}
+
+.sh-hm-empty {
+	background: var(--color-bg);
+	border-radius: 4px;
+}
+
+/* Party tint on the belief-matrix headers (matches the seat cards). */
+.sh-pw-liberal {
+	color: var(--sh-liberal);
+	font-weight: 700;
+}
+.sh-pw-fascist {
+	color: var(--sh-fascist);
+	font-weight: 700;
+}
+.sh-pw-hitler {
+	color: var(--sh-hitler-edge);
+	font-weight: 700;
+}
+
+.sh-hm-pill {
+	color: #fff;
+	padding: 0.02rem 0.32rem;
+	border-radius: 3px;
+	font-family: var(--font-display);
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	font-weight: 600;
+}
+.sh-hm-pill-liberal {
+	background: var(--sh-liberal);
+}
+.sh-hm-pill-fascist {
+	background: var(--sh-fascist);
+}
+.sh-hm-pill-hitler {
+	background: var(--sh-hitler-edge);
+}
+
+/* Axis captions: which way is believer vs subject. */
+.sh-hm-axis-top,
+.sh-hm-axis-left {
+	color: var(--color-text-secondary);
+	font-family: var(--font-display);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-size: 10.5px;
+	font-weight: 600;
+}
+.sh-hm-axis-top {
+	text-align: center;
+}
+.sh-hm-axis-top em,
+.sh-hm-axis-left em {
+	font-family: var(--font-sans);
+	text-transform: none;
+	letter-spacing: 0;
+	font-weight: 400;
+	font-style: italic;
+}
+.sh-hm-corner {
+	background: transparent;
+}
+
+/* A believer with no snapshot at this checkpoint (usually executed). */
+.sh-hm-nosnap {
+	color: var(--color-text-secondary);
+	font-style: italic;
+	text-align: left;
+	padding-left: 0.5rem;
+	font-family: var(--font-sans);
+}
